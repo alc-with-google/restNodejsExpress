@@ -1,0 +1,23 @@
+Representational State Transfer
+ReST 
+The contraints:
+=> The client server
+--request and response between client and server 
+=> The Stateless Server 
+--client sends one request, and gets one response.
+--Now, there may be more than one server 
+-- the client dooesnt need to care 
+=> Cahching 
+--Only if Needed as regards the request and respond 
+
+==> The Uniform Interface
+Resources (nouns), build around things not verbs, e.g. 
+book resources -  http://.../book 
+author resources - http://../author 
+
+GET - retrieve an object
+POST - put an object 
+DELETE - delete an object
+PUT/ PATCH - replace an object 
+
+Hypermedia - hyperlinks to navigate the api
