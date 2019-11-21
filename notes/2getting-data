@@ -1,0 +1,25 @@
+Implement the Http GET Verb 
+Get a list of items or just one 
+Wire Up to Mongo DB 
+Search for items
+
+Implement the Http GET Verb 
+const bookRouter = express.Router();
+
+bookRouter.route('/books')
+    .get((req, res) => {
+        //creating the response
+        const response = { hello: 'This is my API'};
+
+        //sending the response
+        res.json(response)
+
+        //we could have res.sendFile(); res.render(); res.send()
+    });
+
+//the route for the reponse(in this case, the json object)
+//http://localhost:4000/api/books
+app.use ('/api', bookRouter)
+
+
+
