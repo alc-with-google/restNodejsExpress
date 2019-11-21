@@ -21,3 +21,70 @@ DELETE - delete an object
 PUT/ PATCH - replace an object 
 
 Hypermedia - hyperlinks to navigate the api
+
+/******Setting Up Environmant******/
+1. Download nodejs
+2. npm init //on command line which creates the package.json 
+3. npm install express //puts the express dependencies 
+4 create app.js file 
+
+var express = require('expess');
+
+var app = express();
+
+var port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+    res.send('Welcome to my API!');
+});
+
+app.listen(port,()=>{
+    console.log('Running on port ' + port);
+});
+
+5. node app.js //on command line
+
+Set up tools
+
+on command line 
+npm i eslint -D //dependency modules
+
+add to scripts:
+"lint": "eslint"
+
+on command line 
+npm run lint -- --init 
+
+change in scripts 
+add to scripts:
+"lint": "eslint ."
+
+
+
+on command line 
+npm install typescript
+npm run lint
+
+It will show errors, which you can then change 
+Error on line breaks?
+"linebreak-style": ["error", "windows"] //add as rules
+
+More tools:
+npm install nodemon
+
+//add in scripts
+"start": "nodemon app.js"
+
+//add nodemon config:
+nodemonConfig: {
+    "restartable": "rs",
+    "ignore": [
+        "node_modules/**/node_modules"
+    ],
+    "delay": 2500,
+    "env": {
+        "NODE_ENV": "development",
+        "PORT": 4000
+    }
+}
+

@@ -1,0 +1,36 @@
+{
+  "name": "restfull-web-services-nodejs-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Obhafuoso Ezekiel",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.0",
+    "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+        "node_modules/**/node_modules"
+    ],
+    "delay": 2500,
+    "env": {
+        "NODE_ENV": "development",
+        "PORT": 4000
+    }
+  }
+}
