@@ -1,18 +1,21 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const Book = require('./models/bookModel.js');
 
 const app = express();
 const bookRouter = express.Router();
 const port = process.env.PORT || 3000;
+const db = mongoose.connect('mongodb://localhost/bookAPI');
+
 
 bookRouter.route('/books')
   .get((req, res) => {
-    //creating the response
-    const response = { hello: 'This is my API' };
-
-    //sending the response
-    res.json(response)
-
-    //we could have res.sendFile(); res.render(); res.send()
+    Book.find((err, books) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(books);
+    });
   });
 
 app.use('/api', bookRouter)

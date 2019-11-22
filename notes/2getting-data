@@ -3,7 +3,9 @@ Get a list of items or just one
 Wire Up to Mongo DB 
 Search for items
 
-Implement the Http GET Verb 
+/**************************************
+******Implement the Http GET Verb *****
+***************************************/
 const bookRouter = express.Router();
 
 bookRouter.route('/books')
@@ -20,6 +22,69 @@ bookRouter.route('/books')
 //the route for the reponse(in this case, the json object)
 //http://localhost:4000/api/books
 app.use ('/api', bookRouter)
+
+
+/**************************************
+******Wire Up to Mongo DB*****
+***************************************/
+
+install Mongo DB from their website
+//https://medium.com/@zibon/installing-mongodb-in-windows-like-ubuntu-5d6d2285dac6
+//https://chocolatey.org/install ==> Package fo Windows 
+
+To import Book data into your mongoDB database
+Make sure MongoDB is running then 
+run 'cmd /c --% mongo bookAPI < bookJson.js' from the command line
+
+because of '<':
+"cmd" invokes cmd.exe, which knows what you mean by <
+"/c" tells cmd.exe to process one command following on the command lineand then exit.
+"--%" tells PowerShell to leave the rest of the command line alone, so that cmd.exe can deal with the < redirection.
+
+
+next:
+npm install mongoose
+
+in app.js:
+const mongoose = require('mongoose');
+
+const db = mongoose.connect('mongodb://localhost/bookAPI');
+const Book = require('./models/bookModel');
+
+in the bookModel:
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+
+const bookModel = new Schema(
+  {
+    title: { type: String },
+    author: { type: String },
+    genre: { type: String },
+    read: { type: Boolean, default: false },
+  }
+);
+
+module.exports = mongoose.model('Book', bookModel);
+
+//change funct content get.use:
+Book.find(err, books) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(books);
+    };
+
+
+
+
+in .eslint:
+"rules": {
+        "comma-dangle": 0
+    }
+
+
+
 
 
 
