@@ -1,0 +1,35 @@
+/***************************
+******** Agenda ************
+***************************/
+Implement the HTTP POST verb
+Add a new item to the list
+Test with Postman
+Code Cleanup
+
+/***************************
+Implement the HTTP POST verb
+***************************/
+
+npm install body-parser
+
+in apps.js
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json())
+
+in book route:
+.post ((req, res)=>{
+    const book = new Book(req.body);
+    console.log(book);
+    book.save();
+    return res.status(201).json(book);
+})
+
+Use a Tool POstman to handle post 
+
+/***************************
+Code Clean up, Injecting Book
+***************************/
+//abstracts routes functions in apps.js to bookRouter.js file in routes folder
+//so, just require the routes in apps.js
