@@ -25,7 +25,7 @@ app.use ('/api', bookRouter)
 
 
 /**************************************
-******Wire Up to Mongo DB*****
+******Wire Up to Mongo DB**************
 ***************************************/
 
 install Mongo DB from their website
@@ -84,7 +84,48 @@ in .eslint:
     }
 
 
+/**************************************
+****** Filtering a query string *******
+***************************************/
+//in apps.js
+//http://localhost:4000/api/books?genre=Fantasy returns all Fantssy Genre books
+const {query} = req;
+    Book.find(query, (err, books) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(books);
+    });
 
 
+//the code above works but...
+//a query for for an item that's NOT in api returns an empty array 
+//i.e. http://localhost:4000/api/books?ghd=abc returns []
+//improve code
+const query = {};
+    if (req.query.genre) {
+      query.genre = req.query.genre;
+    }
+    Book.find(query, (err, books) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(books);
+    });
+
+/**************************************
+****** Filtering a query string *******
+***************************************/
+
+//add this app.js
+
+bookRouter.route('/books/:bookId')
+  .get((req, res) => {
+    Book.findById(req.params.bookId, (err, book) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(book);
+    });
 
 

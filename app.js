@@ -10,11 +10,24 @@ const db = mongoose.connect('mongodb://localhost/bookAPI');
 
 bookRouter.route('/books')
   .get((req, res) => {
-    Book.find((err, books) => {
+    const query = {};
+    if (req.query.genre !== undefined) {
+      query.genre = req.query.genre;
+    }
+    Book.find(query, (err, books) => {
       if (err) {
         return res.send(err);
       }
       return res.json(books);
+    });
+  });  
+  bookRouter.route('/books/:bookId')
+  .get((req, res) => {
+    Book.findById(req.params.bookId, (err, book) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(book);
     });
   });
 
