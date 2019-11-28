@@ -1,0 +1,30 @@
+/***************************
+******** Agenda ************
+***************************/
+Implement the HTTP PUT and PATCH verb
+Put replaces an item
+PATCH only changes a piece
+Middleware
+Implement the HTTP DELETE verb
+
+
+/***************************
+Implement the HTTP PUT
+***************************/
+//at the top put eslint, to disable for this file
+/* eslint-disable no-param-reassign */
+
+
+.put((req, res) => {
+      const { book } = req;
+      book.title = req.body.title;
+      book.author = req.body.author;
+      book.genre = req.body.genre;
+      book.read = req.body.read;
+      req.book.save((err) => {
+        if (err) {
+          return res.send(err);
+        }
+        return res.json(book);
+      });
+    })
