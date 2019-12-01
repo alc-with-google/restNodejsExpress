@@ -83,3 +83,13 @@ bookRouter.use('/books/:bookId', (req, res, next) => {
         }
         return res.json(book);
       });
+
+      //Implement DELETE
+.delete((req, res) => {
+      req.book.remove((err) => {
+        if (err) {
+          return res.send(err);
+        }
+        return res.sendStatus(204);
+      });
+    });
