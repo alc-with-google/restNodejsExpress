@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint",
     "start": "nodemon lint app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/**/*Tests.js"
   },
   "author": "Obhafuoso Ezekiel",
   "license": "MIT",
@@ -23,7 +23,10 @@
     "@typescript-eslint/parser": "^2.8.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.2",
+    "should": "^13.2.3",
+    "sinon": "^7.5.0"
   },
   "nodemonConfig": {
     "restartable": "rs",

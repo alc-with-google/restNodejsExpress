@@ -39,3 +39,60 @@ const controller = booksController(Book); //here
     .post(controller.post) //here
     .get(controller.get); //here
 
+
+//Unit Testing with Mocha
+//from command line install should, sinon and mocha
+
+
+const should = require('should');
+const sinon = require('sinon');
+const bookController = require('../controllers/booksController');
+
+describe('Book Controller Tests:', () => {
+  describe('Post', () => {
+    it('should not allow an empty title on post', () => {
+      const Book = function (book) { this.save = () => {}};
+
+      const req = {
+        body: {
+          author: 'Jon'
+        }
+      };
+
+      const res = {
+        status: sinon.spy(),
+        send: sinon.spy(),
+        json: sinon.spy()
+      };
+
+      const controller = bookController(Book);
+      controller.post(req, res);
+
+      res.status.calledWith(400).should.equal(true, `Bad Status ${res.status.args[0][0]}`);
+      res.send.calledWith('Title is required').should.equal(true);
+    });
+  });
+});
+
+//in package.json
+"test": "mocha tests/**/*Tests.js"
+
+//in booksController.js
+res.status(201).json(book)
+
+becomes;
+res.status(201)
+res.json(book)
+ also:
+  function post(req, res) {
+    const book = new Book(req.body);
+    if (!req.body.title) {
+      res.status(400);
+      return res.send('Title is required');
+    }
+    book.save();
+    res.status(201);
+    return res.json(book);
+  }
+
+
