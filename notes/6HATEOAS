@@ -1,0 +1,34 @@
+/******************
+AGENDA
+******************/
+What is HATEOAS
+Using Hypermedia
+Self-documenting API
+
+/******************
+AGENDA
+******************/
+in bookController.js 
+in Book.find, just after the if statement
+
+
+const returnBooks = books.map((book) => {
+        const newBook = book.toJSON();
+        newBook.links = {};
+        newBook.links.self = `http://${req.headers.host}/api/books/${book._id}`;
+        return newBook;
+
+remember to return returnBooks in the line below
+
+in bookRouter.js 
+Change the one line get function to 
+
+.get((req, res) => {
+      const returnBook = req.book.toJSON();
+
+      returnBook.links = {};
+      const genre = req.book.genre.replace(' ', '%20');
+      returnBook.links.FilterByThisGenre = `http://${req.headers.host}/api/books/?genre=${genre}`;
+      res.json(returnBook);
+    })
+

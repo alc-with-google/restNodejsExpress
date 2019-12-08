@@ -11,7 +11,7 @@ if (process.env.ENV === 'Test') {
  });
 } else {
   console.log('This is for real');
-  const db = mongoose.connect('mongodb://localhost/bookAPI-prod', {
+  const db = mongoose.connect('mongodb://localhost/bookAPI', {
    useUnifiedTopology: true
  });
 }
